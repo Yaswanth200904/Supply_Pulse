@@ -1,0 +1,65 @@
+[
+  {
+    "id": "SUPP-01",
+    "name": "Apex Prime Wholesale Logistics",
+    "supported_skus": ["SKU-101", "SKU-204", "SKU-520"],
+    "base_prices": {
+      "SKU-101": 490,
+      "SKU-204": 560,
+      "SKU-520": 1950
+    },
+    "reliability_score": 96.5,
+    "std_lead_time_days": 3,
+    "fast_track_lead_time_days": 2,
+    "fast_track_surcharge_pct": 5,
+    "min_order_quantity": 200,
+    "bulk_discount_rules": [
+      {"min_qty": 300, "discount_pct": 5.0},
+      {"min_qty": 600, "discount_pct": 9.0},
+      {"min_qty": 1200, "discount_pct": 14.0}
+    ],
+    "negotiation_flexibility": 0.85
+  },
+  {
+    "id": "SUPP-02",
+    "name": "Nexus Global Tech & Supply",
+    "supported_skus": ["SKU-309", "SKU-415"],
+    "base_prices": {
+      "SKU-309": 920,
+      "SKU-415": 1750
+    },
+    "reliability_score": 93.0,
+    "std_lead_time_days": 4,
+    "fast_track_lead_time_days": 2,
+    "fast_track_surcharge_pct": 7,
+    "min_order_quantity": 100,
+    "bulk_discount_rules": [
+      {"min_qty": 150, "discount_pct": 6.0},
+      {"min_qty": 350, "discount_pct": 11.0},
+      {"min_qty": 700, "discount_pct": 16.0}
+    ],
+    "negotiation_flexibility": 0.90
+  },
+  {
+    "id": "SUPP-03",
+    "name": "Zenith Express Merchants",
+    "supported_skus": ["SKU-101", "SKU-309", "SKU-415", "SKU-520"],
+    "base_prices": {
+      "SKU-101": 510,
+      "SKU-309": 960,
+      "SKU-415": 1820,
+      "SKU-520": 2000
+    },
+    "reliability_score": 88.0,
+    "std_lead_time_days": 2,
+    "fast_track_lead_time_days": 1,
+    "fast_track_surcharge_pct": 10,
+    "min_order_quantity": 50,
+    "bulk_discount_rules": [
+      {"min_qty": 100, "discount_pct": 4.0},
+      {"min_qty": 250, "discount_pct": 8.0},
+      {"min_qty": 500, "discount_pct": 12.0}
+    ],
+    "negotiation_flexibility": 0.75
+  }
+]

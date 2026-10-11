@@ -1,0 +1,57 @@
+{
+  "SKU-101": {
+    "name": "Nitro Cold Brew Coffee (Pack of 12)",
+    "category": "Beverages",
+    "current_stock": 140,
+    "unit": "packs",
+    "daily_avg_sales": 38,
+    "min_safety_stock": 80,
+    "lead_time_days": 3,
+    "target_cost": 450,
+    "selling_price": 720
+  },
+  "SKU-204": {
+    "name": "Organic Almond Milk 1L (Case of 6)",
+    "category": "Dairy Alternatives",
+    "current_stock": 95,
+    "unit": "cases",
+    "daily_avg_sales": 26,
+    "min_safety_stock": 60,
+    "lead_time_days": 4,
+    "target_cost": 520,
+    "selling_price": 840
+  },
+  "SKU-309": {
+    "name": "65W GaN Fast Charger Multi-Port",
+    "category": "Electronics",
+    "current_stock": 65,
+    "unit": "units",
+    "daily_avg_sales": 22,
+    "min_safety_stock": 50,
+    "lead_time_days": 5,
+    "target_cost": 850,
+    "selling_price": 1499
+  },
+  "SKU-415": {
+    "name": "Active Noise Cancelling Earbuds Pro",
+    "category": "Electronics",
+    "current_stock": 42,
+    "unit": "units",
+    "daily_avg_sales": 15,
+    "min_safety_stock": 35,
+    "lead_time_days": 4,
+    "target_cost": 1600,
+    "selling_price": 2999
+  },
+  "SKU-520": {
+    "name": "Isolate Whey Protein 1kg Chocolate",
+    "category": "Nutrition",
+    "current_stock": 180,
+    "unit": "tubs",
+    "daily_avg_sales": 20,
+    "min_safety_stock": 50,
+    "lead_time_days": 5,
+    "target_cost": 1800,
+    "selling_price": 2799
+  }
+}

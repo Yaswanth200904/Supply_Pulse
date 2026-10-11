@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SupplyPulse: Product Requirements Document (PRD) & Master Architectural Guide</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap');
+
+    @page {
+      size: A4;
+      margin: 14mm 14mm 14mm 14mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #1e293b;
+      background: #ffffff;
+      line-height: 1.5;
+      font-size: 11.5px;
+    }
+
+    .cover-page {
+      height: 96vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 2px solid #0f172a;
+      border-radius: 12px;
+      padding: 40px;
+      background: linear-gradient(135deg, #090d16 0%, #1e293b 100%);
+      color: #ffffff;
+      page-break-after: always;
+    }
+
+    .cover-top h1 {
+      font-size: 32px;
+      font-weight: 800;
+      color: #38bdf8;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+
+    .cover-top h2 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #e2e8f0;
+      margin-bottom: 16px;
+    }
+
+    .cover-pill {
+      display: inline-block;
+      background: rgba(56, 189, 248, 0.2);
+      border: 1px solid #38bdf8;
+      color: #38bdf8;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .cover-mid {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+
+    .cover-mid h3 {
+      font-size: 14px;
+      color: #38bdf8;
+      margin-bottom: 10px;
+    }
+
+    .cover-mid ul {
+      list-style-type: none;
+      font-size: 12px;
+      color: #cbd5e1;
+      line-height: 1.8;
+    }
+
+    .cover-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      padding-top: 16px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #94a3b8;
+    }
+
+    .section-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #0f172a;
+      border-bottom: 2px solid #0f172a;
+      padding-bottom: 5px;
+      margin-top: 20px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .section-title span {
+      background: #0284c7;
+      color: white;
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+    }
+
+    .h3-sub {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 12px 0 6px 0;
+    }
+
+    p {
+      margin-bottom: 8px;
+      color: #334155;
+      text-align: justify;
+    }
+
+    .callout {
+      background: #f0fdf4;
+      border-left: 4px solid #10b981;
+      padding: 10px 14px;
+      border-radius: 0 8px 8px 0;
+      margin: 10px 0;
+      font-size: 11.5px;
+      color: #065f46;
+    }
+
+    .callout-blue {
+      background: #f0f9ff;
+      border-left: 4px solid #0284c7;
+      padding: 10px 14px;
+      border-radius: 0 8px 8px 0;
+      margin: 10px 0;
+      font-size: 11.5px;
+      color: #075985;
+    }
+
+    .callout-amber {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      padding: 10px 14px;
+      border-radius: 0 8px 8px 0;
+      margin: 10px 0;
+      font-size: 11.5px;
+      color: #92400e;
+    }
+
+    .img-box {
+      margin: 14px 0;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      overflow: hidden;
+      page-break-inside: avoid;
+      background: #000000;
+    }
+
+    .img-box img {
+      width: 100%;
+      display: block;
+    }
+
+    .img-caption {
+      background: #f8fafc;
+      padding: 6px 12px;
+      font-size: 10px;
+      color: #64748b;
+      font-weight: 600;
+      border-top: 1px solid #e2e8f0;
+      text-align: center;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 10.5px;
+      page-break-inside: avoid;
+    }
+
+    th {
+      background: #0f172a;
+      color: #ffffff;
+      padding: 7px 10px;
+      text-align: left;
+      font-weight: 700;
+    }
+
+    td {
+      padding: 7px 10px;
+      border-bottom: 1px solid #e2e8f0;
+      color: #334155;
+    }
+
+    tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+
+    .code-block {
+      background: #0b1120;
+      color: #38bdf8;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 10px;
+      margin: 10px 0;
+      line-height: 1.5;
+      overflow-x: auto;
+    }
+
+    .qa-box {
+      border: 1px solid #e2e8f0;
+      background: #f8fafc;
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+      page-break-inside: avoid;
+    }
+
+    .qa-q {
+      font-weight: 800;
+      color: #0f172a;
+      font-size: 11.5px;
+      margin-bottom: 4px;
+    }
+
+    .qa-a {
+      color: #334155;
+      font-size: 11px;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- COVER PAGE -->
+  <div class="cover-page">
+    <div class="cover-top">
+      <div class="cover-pill">Enterprise AI Architecture Series</div>
+      <h1 style="margin-top: 14px;">SupplyPulse</h1>
+      <h2>Autonomous Supply Chain Resilience & Consumer Rights Defense Swarm</h2>
+      <p style="color: #94a3b8; font-size: 13px;">
+        End-to-End Product Requirements Document (PRD), Multi-Agent Engineering Architecture, 
+        and Technical Implementation Guide
+      </p>
+    </div>
+
+    <div class="cover-mid">
+      <h3>Document Scope & Executive Abstract</h3>
+      <ul>
+        <li>• <strong>Dual-Sided Architecture:</strong> B2B Stockout Prevention & Consumer Rights Legal Defense.</li>
+        <li>• <strong>Predictive Analytics:</strong> Gradient Boosted Tree Forecasting & Dynamic Reorder Points (ROP).</li>
+        <li>• <strong>Autonomous Swarms:</strong> Multi-turn Game-Theoretic Bargaining & Consumer Protection Act 2019 RAG.</li>
+        <li>• <strong>Enterprise Tech Stack:</strong> Python, LightGBM, LangGraph, FastAPI, Streamlit & Glassmorphic Web SPA.</li>
+        <li>• <strong>Localized Intelligence:</strong> Multi-hub telemetry (Hyderabad, Bengaluru, Mumbai, Delhi) + Multilingual NLP.</li>
+      </ul>
+    </div>
+
+    <div class="cover-bottom">
+      <div>Author: AI Operations Engineering Group</div>
+      <div>Project Codebase: supplypulse/</div>
+      <div>Date: October 2026 • Version 2.0.0 Production</div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: EXECUTIVE SUMMARY & PROBLEM -->
+  <div class="section-title">
+    <span>1</span> Executive Summary & Problem Landscape
+  </div>
+
+  <p>
+    Modern commerce is severely broken at two critical inflection points: the <strong>upstream B2B supply chain</strong> and the <strong>downstream consumer resolution desk</strong>. SupplyPulse was engineered to replace slow, manual human processes at both ends with an autonomous, high-intelligence multi-agent network.
+  </p>
+
+  <div class="h3-sub">1.1 Upstream Failure: Stockout Losses in Quick Commerce</div>
+  <p>
+    In high-velocity commerce (Blinkit, Zepto, Instamart, Amazon Prime), customer demand fluctuates wildly based on weather, local holidays, and paydays. Traditional procurement relies on periodic human reviews (weekly PO generation). When a sudden 300% spike occurs, warehouses run dry before purchase orders are placed. By the time procurement managers negotiate pricing with vendors via email chains, millions of rupees in high-margin sales are lost to competitors.
+  </p>
+
+  <div class="h3-sub">1.2 Downstream Failure: Customer Care Stonewalling</div>
+  <p>
+    When consumers receive defective electronics, transit-damaged goods, or expired perishables, corporate support chatbots are programmed to deflect, delay, and exhaust the buyer with repetitive script templates (<em>"7-day return policy expired"</em>, <em>"Visit third-party service center 45 km away"</em>, <em>"We only offer a ₹150 promotional coupon"</em>). Most consumers lack the legal vocabulary to cite the <strong>Consumer Protection Act, 2019</strong> or enforce statutory product liability rights, leaving them cheated and out of pocket.
+  </p>
+
+  <div class="callout-blue">
+    <strong>The SupplyPulse Solution:</strong> SupplyPulse operates as a closed-loop platform that uses Machine Learning to predict warehouse runouts 7 to 14 days in advance, deploys autonomous agents to negotiate supplier discounts, and flips the script on customer support by arming consumers with an AI Advocate Bot that cites federal statutes to force 100% full refunds.
+  </div>
+
+  <div class="img-box">
+    <img src="file:///E:/career-ops/supplypulse/supplypulse_infographic.jpg" alt="SupplyPulse B2B Architecture">
+    <div class="img-caption">Figure 1: End-to-End B2B Supply Chain & Multi-Agent Procurement Swarm Workflow</div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- SECTION 2: SYSTEM ARCHITECTURE & MULTI-AGENT SWARM -->
+  <div class="section-title">
+    <span>2</span> Complete Multi-Agent Swarm Topology
+  </div>
+
+  <p>
+    SupplyPulse is architected around 5 specialized, decoupled agents coordinated by a central State Orchestrator. Rather than relying on simple linear LLM chains, the agents maintain explicit state, query analytical ML models, and conduct multi-turn conversations.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Agent Identifier</th>
+        <th>Core Responsibility</th>
+        <th>Underlying Models / APIs</th>
+        <th>Input ➔ Output Artifact</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Agent 1: Inventory Sentinel</strong></td>
+        <td>Continuously evaluates live warehouse inventory against ML demand curves; calculates runout horizons.</td>
+        <td>HistGradientBoostingRegressor, ROP formula, Python</td>
+        <td>Live Telemetry ➔ Critical Stockout Alert Payload</td>
+      </tr>
+      <tr>
+        <td><strong>Agent 2: Supplier Discovery</strong></td>
+        <td>Scans registered enterprise suppliers; calculates multi-attribute utility scores (Cost, SLA, Reliability).</td>
+        <td>Multi-Criteria Utility Scoring Algorithm</td>
+        <td>Stockout Alert ➔ Shortlisted Ranked Supplier Matrix</td>
+      </tr>
+      <tr>
+        <td><strong>Agent 3: Dynamic Negotiator</strong></td>
+        <td>Executes multi-turn game-theoretic bargaining against supplier bots; leverages volume to slash unit prices.</td>
+        <td>Bargaining Game Engine, State Transition Graph</td>
+        <td>Base Catalog Quote ➔ Final Negotiated Price & 48h SLA</td>
+      </tr>
+      <tr>
+        <td><strong>Agent 4: PO Generator</strong></td>
+        <td>Synthesizes electronic Purchase Orders containing liquidated damages clauses and 18% GST tax schema.</td>
+        <td>Audit Engine, Pydantic Data Models</td>
+        <td>Negotiated Terms ➔ Audited Electronic PO (JSON/PDF)</td>
+      </tr>
+      <tr>
+        <td><strong>Agent 5: Customer AI Advocate</strong></td>
+        <td>Defends consumer rights against corporate support bots; cites CPA 2019 Section 84 & forces 100% refunds.</td>
+        <td>Defect Forensics, Consumer Law RAG Vector DB</td>
+        <td>Defect Photo & Invoice ➔ 100% Refund Resolution Memo</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="img-box">
+    <img src="file:///E:/career-ops/supplypulse/customer_ai_advocate_infographic.jpg" alt="Customer AI Advocate Infographic">
+    <div class="img-caption">Figure 2: The Customer AI Advocate 5-Step Dispute Resolution & Statutory Enforcement Architecture</div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- SECTION 3: MATHEMATICAL FORMULATIONS & LOGIC -->
+  <div class="section-title">
+    <span>3</span> Mathematical Models & Algorithmic Foundations
+  </div>
+
+  <div class="h3-sub">3.1 Dynamic Reorder Point (ROP) Formulation</div>
+  <p>
+    Static minimum thresholds fail in dynamic retail environments. The Inventory Sentinel calculates dynamic Reorder Points (ROP) per SKU continuously:
+  </p>
+
+  <div class="code-block">
+    ROP = (Projected_Average_Daily_Demand * Supplier_Lead_Time_Days) + Dynamic_Safety_Stock
+    Where:
+      Dynamic_Safety_Stock = Z_Service_Factor * Sqrt(Lead_Time) * Standard_Deviation_Demand
+      Z_Service_Factor = 1.96 (for a 97.5% Cycle Service Level)
+  </div>
+
+  <div class="h3-sub">3.2 Multi-Criteria Vendor Utility Ranking</div>
+  <p>
+    When multiple suppliers fulfill an identical SKU, the Supplier Discovery Agent scores each candidate using a normalized weighted index:
+  </p>
+
+  <div class="code-block">
+    Utility_Score = (w_cost * Cost_Score) + (w_rel * Reliability_Score) + (w_speed * Speed_Score)
+    Weights:
+      w_cost = 0.40  (Cost Efficiency relative to target budget ceiling)
+      w_rel  = 0.35  (Historical Delivery Accuracy & Quality pass rate, 0-100)
+      w_speed= 0.25  (Transit speed normalized against 3-day baseline)
+  </div>
+
+  <div class="h3-sub">3.3 Game-Theoretic Multi-Turn Bargaining Protocol</div>
+  <p>
+    The Negotiator Agent implements an automated concession protocol with bounded utility guardrails:
+  </p>
+  <ul>
+    <li><strong>Turn 1 (Discovery):</strong> Request allocation for high volume with baseline list pricing.</li>
+    <li><strong>Turn 2 (The Counter):</strong> Counter with a 8%–12% target discount leveraging Net-15 electronic payment settlement and quarterly preferred partner status.</li>
+    <li><strong>Turn 3 (SLA Lock):</strong> Agree on unit price while enforcing a <strong>liquidated damages clause (1.5% penalty per 6 hours delay beyond 48 hours)</strong>.</li>
+  </ul>
+
+  <div class="page-break"></div>
+
+  <!-- SECTION 4: CONSUMER PROTECTION ACT 2019 STATUTORY MAPPING -->
+  <div class="section-title">
+    <span>4</span> Consumer Protection Act, 2019 Legal Framework
+  </div>
+
+  <p>
+    The Customer AI Advocate operates by mapping customer defect evidence directly onto statutory provisions under Indian law, removing the customer's vulnerability to corporate policy stonewalling.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Statutory Provision</th>
+        <th>Legal Scope & Consumer Protection Rule</th>
+        <th>AI Advocate Strike Strategy</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Section 84(1)(a)</strong><br>Product Liability</td>
+        <td>A product manufacturer is strictly liable if the product contains a manufacturing defect or deviates from specifications, regardless of whether negligence is proven.</td>
+        <td>Overrules 7-day platform return windows for inherent hardware failure (dead panel, burnt circuit, motor failure).</td>
+      </tr>
+      <tr>
+        <td><strong>Section 2(47)</strong><br>Unfair Trade Practice</td>
+        <td>Refusing to take back defective goods or refund consideration paid, or imposing arbitrary non-statutory conditions.</td>
+        <td>Invalidates platform policies mandating "uninterrupted unboxing videos" for obvious shipping transit fractures.</td>
+      </tr>
+      <tr>
+        <td><strong>Section 2(11)</strong><br>Deficiency in Service</td>
+        <td>Any fault, imperfection, or inadequacy in quality, nature, and manner of performance required to be maintained by law or contract.</td>
+        <td>Cites deficiency when platforms force a consumer to travel to a distant third-party service center for out-of-the-box defects.</td>
+      </tr>
+      <tr>
+        <td><strong>E-Commerce Rules 2020</strong><br>Section 5(1)</td>
+        <td>Mandates appointment of a dedicated Grievance Officer with 48-hour response SLAs and 30-day ticket resolution ceilings.</td>
+        <td>Threatens direct escalation to the corporate Grievance Officer and the National Consumer Helpline (NCH / INGRAM).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="page-break"></div>
+
+  <!-- SECTION 5: CODEBASE & VERIFICATION RESULTS -->
+  <div class="section-title">
+    <span>5</span> Empirical Test Execution & Verification Audit
+  </div>
+
+  <p>
+    The complete system was executed against the automated integration test suite (`test_pipeline.py`). Both test pipelines completed with 100% pass rates:
+  </p>
+
+  <div class="code-block">
+======================================================================
+TEST 1: B2B AUTONOMOUS INVENTORY & PROCUREMENT SWARM
+======================================================================
+[+] Stockout Risk Detected for: Nitro Cold Brew Coffee (Pack of 12)
+    Current Stock: 140 units | Predicted Stockout: In 4 days!
+    Recommended Reorder Qty: 600 units
+[+] Selected Supplier: Apex Prime Wholesale Logistics (Composite Score: 98.8/100)
+[+] Initial Quote: Rs. 445.90 / unit
+[+] Negotiated Price: Rs. 415.58 / unit
+[+] Total Savings Secured: Rs. 18,192.00 (6.8% Discount)
+[+] Agreed Delivery SLA: 48 Hours Guaranteed Dock Delivery
+[+] Generated PO Number: PO-20261010-5B8AA4
+    Total Landed Cost (incl. 18% GST): Rs. 294,230.64
+[OK] B2B Pipeline Passed!
+
+======================================================================
+TEST 2: CUSTOMER AI ADVOCATE BOT (WARRANTY & DAMAGE NEGOTIATION)
+======================================================================
+[+] Customer: Rohan Verma (Order #OD-2026-99381)
+[+] Product: Ultrawide Gaming Monitor 34-inch (Value: Rs. 28,999.00)
+[+] Statutory Ground: Consumer Protection Act, 2019 — Section 84(1)(a)
+[+] Final Resolution: 100% Full Refund & Free Doorstep Pickup
+[+] Recovered Value: Rs. 28,999.00 (100% Full Refund Payout)
+[OK] Customer Advocate Pipeline Passed!
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- SECTION 6: TECHNICAL INTERVIEW CHEATSHEET -->
+  <div class="section-title">
+    <span>6</span> Technical Interview Preparation & Q&A Playbook
+  </div>
+
+  <div class="qa-box">
+    <div class="qa-q">Q1: "Why not just use an LLM API to do the demand forecasting instead of a classical ML model?"</div>
+    <div class="qa-a">
+      <strong>Answer:</strong> LLMs are autoregressive token predictors, not numerical regression engines. They struggle with high-precision time-series mathematics, seasonality calculations, and confidence intervals. We use a <code>HistGradientBoostingRegressor</code> for deterministic, millisecond-fast numerical forecasting, and reserve LLM/Agentic architectures for what they do best: unstructured reasoning, multi-turn negotiation, and legal argument construction.
+    </div>
+  </div>
+
+  <div class="qa-box">
+    <div class="qa-q">Q2: "How does the Negotiator Agent prevent hallucinated prices or overpaying?"</div>
+    <div class="qa-a">
+      <strong>Answer:</strong> The agent is bounded by deterministic financial guardrails. The system enforces a hard ceiling: <code>vendor_concession_price = min(initial_price, calculated_price)</code>. If a supplier refuses to meet the target within the negotiation flexibility threshold, the agent does not concede—it aborts and falls back to the second-highest ranked supplier.
+    </div>
+  </div>
+
+  <div class="qa-box">
+    <div class="qa-q">Q3: "How does the Customer AI Advocate legally force companies to give refunds?"</div>
+    <div class="qa-a">
+      <strong>Answer:</strong> Corporate customer service bots rely on platform terms of service to deflect claims. However, under Indian law, platform terms are subordinate to statutory legislation. By programmatically citing Section 84 (Strict Product Liability) and Section 2(47) (Unfair Trade Practices) of the Consumer Protection Act 2019, while simultaneously preparing a docket for the National Consumer Helpline (NCH / INGRAM Portal), the agent shifts the company's financial calculation from a simple denial to avoiding a regulatory compliance fine.
+    </div>
+  </div>
+
+  <div class="qa-box">
+    <div class="qa-q">Q4: "How does the architecture scale to multiple regional fulfillment hubs?"</div>
+    <div class="qa-a">
+      <strong>Answer:</strong> The system features a multi-hub telemetry router supporting Hyderabad, Bengaluru, Mumbai, and Delhi NCR. Each hub maintains its own localized lead times, transit lanes, and inventory runout thresholds, while the central swarm coordinates supplier allocations across all nodes.
+    </div>
+  </div>
+
+  <p style="text-align: center; margin-top: 30px; font-weight: 700; color: #94a3b8; font-size: 11px;">
+    End of SupplyPulse Master PRD & Architectural Guide • October 2026
+  </p>
+
+</body>
+</html>

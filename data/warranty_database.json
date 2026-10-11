@@ -1,0 +1,53 @@
+{
+  "statutory_frameworks": [
+    {
+      "name": "Consumer Protection Act, 2019",
+      "sections": [
+        {
+          "section": "Section 2(47) - Unfair Trade Practice",
+          "clause": "Refusal to take back or withdraw goods or to refund the consideration thereof paid within the period stipulated, or failure to issue a cash memo or bill, or making false representations regarding standard, quality or warranty."
+        },
+        {
+          "section": "Section 84 - Product Liability Action against Manufacturer",
+          "clause": "A product manufacturer shall be liable in a product liability action if the product contains a manufacturing defect, is defective in design, or deviates from manufacturing specifications."
+        },
+        {
+          "section": "Section 85 - Product Liability Action against Service Provider",
+          "clause": "A service provider shall be liable for deficiency in service, negligence, or failure to conform to express warranties."
+        },
+        {
+          "section": "Right to Repair & Implied Warranty of Merchantability",
+          "clause": "Goods sold must be reasonably fit for the general purpose for which they are manufactured; latent defects present at delivery void restrictive return windows."
+        }
+      ]
+    }
+  ],
+  "dispute_scenarios": [
+    {
+      "id": "DISP-1001",
+      "customer_name": "Rohan Verma",
+      "product": "Ultrawide Gaming Monitor 34-inch",
+      "purchase_price": 28999,
+      "purchase_date": "2026-09-15",
+      "incident_date": "2026-10-02",
+      "issue_type": "Dead-on-Arrival / Display Artifacts & Vertical Line",
+      "defect_category": "Latent Hardware Defect",
+      "support_bot_initial_reply": "We apologize, but your 7-day replacement window expired on September 22. As per policy, please visit an authorized service center 45 km away.",
+      "legal_counter_strategy": "Invoke CPA 2019 Section 84 for latent panel defect. Mandate doorstep inspection or immediate RMA courier replacement within 5 working days.",
+      "evidence_image_mock": "monitor_vertical_green_lines.jpg"
+    },
+    {
+      "id": "DISP-1002",
+      "customer_name": "Pooja Sharma",
+      "product": "Air Fryer 6.5L Digital",
+      "purchase_price": 6499,
+      "purchase_date": "2026-10-04",
+      "incident_date": "2026-10-06",
+      "issue_type": "Physical Transit Damage / Shattered Glass Basket",
+      "defect_category": "Courier In-Transit Damage",
+      "support_bot_initial_reply": "As the delivery was marked successfully signed, physical damage is not covered unless an uninterrupted unboxing video is provided.",
+      "legal_counter_strategy": "Cite Section 2(47) Consumer Protection Act regarding unilateral unboxing video mandates as an Unfair Trade Practice, citing courier delivery weight logs.",
+      "evidence_image_mock": "broken_glass_basket_damage.jpg"
+    }
+  ]
+}
